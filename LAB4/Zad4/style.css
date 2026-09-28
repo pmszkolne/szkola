@@ -1,0 +1,19 @@
+body{
+    font-family: sans-serif;
+    margin: 0;
+}
+
+li{
+    transition: all 0.4s ease;
+}
+
+.aktywne{
+
+}
+.wykonane{
+    text-decoration: line-through;
+    opacity: 50%;
+}
+.blad{
+    color:darkred;
+}
