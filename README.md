@@ -1,1 +1,0 @@
-# temat1_www
