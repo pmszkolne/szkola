@@ -8,8 +8,8 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
-   sodipodi:docname="circle.svg"
-   inkscape:export-filename="circle.png"
+   sodipodi:docname="mark.svg"
+   inkscape:export-filename="mark.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -18,7 +18,7 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
      id="namedview1"
-     pagecolor="#b4b4b4"
+     pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.25"
      inkscape:showpageshadow="2"
@@ -26,28 +26,36 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.9477379"
-     inkscape:cx="81.119744"
-     inkscape:cy="162.4962"
+     inkscape:zoom="2.7545174"
+     inkscape:cx="121.25536"
+     inkscape:cy="130.14984"
      inkscape:window-width="1920"
      inkscape:window-height="991"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
-     showguides="false"
-     inkscape:export-bgcolor="#00000000" />
+     inkscape:current-layer="layer1" />
   <defs
      id="defs1" />
   <g
      inkscape:label="Warstwa 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <circle
-       style="fill:none;fill-opacity:1;stroke:#5c00a0;stroke-width:11.1957;stroke-dasharray:none;stroke-opacity:1"
-       id="path1"
-       cx="33.072918"
-       cy="33.072918"
-       r="22.225746" />
+    <rect
+       style="fill:#5c00a0;fill-opacity:1;stroke:none;stroke-width:12.8176"
+       id="rect1"
+       width="12.060232"
+       height="62.493931"
+       x="40.74205"
+       y="-31.246965"
+       transform="rotate(45)" />
+    <rect
+       style="fill:#5c00a0;fill-opacity:1;stroke:none;stroke-width:12.8176"
+       id="rect2"
+       width="12.060232"
+       height="62.493931"
+       x="-6.0301151"
+       y="-78.019127"
+       transform="rotate(135)" />
   </g>
 </svg>
