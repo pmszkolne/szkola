@@ -30,13 +30,13 @@ footer{
 
 .box{
   /* background-color:#e9ccff; */
-  height: 50%;
-  max-width: 85%;
-  /* max-height: 25%; */
+  height: min(50vh, 85vw); /*maxwidth would ignore aspect-ratio so..; this approach achieves the same*/
+  /* max-width: 85%; */
   aspect-ratio: 1 / 1;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
+  grid-template-rows: 1fr 1fr 1ft;
+  gap: 5%;
   /*padding: 10px;*/
   
   position: fixed;
@@ -53,7 +53,7 @@ footer{
   background-repeat: no-repeat;
 }
 .box div{
-  /*background-color: #e9ccff; */
+  /* background-color: rgba(255, 255, 255, 0.141); */
   display: flex;
   align-items: center;
   justify-content: center;

@@ -93,10 +93,3 @@ buttons.forEach(button => {
 const clearButton = document.getElementById("clear");
 
 clearButton.addEventListener("click", clear);
-
-
-/*
-try instead creating a table of relations
-and then checking each relation using that formula
-if works, set red color for each of relation objects
-*/
