@@ -35,7 +35,7 @@ footer{
   aspect-ratio: 1 / 1;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1ft;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 5%;
   /*padding: 10px;*/
   
