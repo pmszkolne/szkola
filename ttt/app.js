@@ -1,5 +1,11 @@
 const buttons = document.querySelectorAll(".box div");
-let mark = false;
+const scoreUi = document.querySelector(".score .value")
+
+const markIcon = document.querySelector(".score .icon#mark img")
+const circleIcon = document.querySelector(".score .icon#circle img")
+//console.log(markIcon, circleIcon)
+
+let mark = false; // controls turns
 let gameOver = false;
 
 const itemsClear = [
@@ -9,6 +15,8 @@ const itemsClear = [
 ];
 let items = [...itemsClear];
 
+let score = [0,0];
+
 const relations = [
   [0,3,6], [1,4,7], [2,5,8], // columns
   [0,1,2], [3,4,5], [6,7,8], // rows
@@ -17,6 +25,14 @@ const relations = [
 
 let i = 0;
 
+function changeTurn() {
+  mark = !mark;
+  markIcon.classList.toggle("active");
+  circleIcon.classList.toggle("active");
+}
+markIcon.classList.toggle("active"); // first active by default
+
+
 function checkWin() {
   // check rows, columns
   relations.forEach(relation => {
@@ -24,9 +40,13 @@ function checkWin() {
     let b = items[relation[1]];
     let c = items[relation[2]];
 
+    // win
     if (a !== null && a === b && b == c) {
-      //console.log(items);
       colorSquares(relation);
+
+      score[a ? 0 : 1] += 1; // increment score
+      scoreUi.textContent = `${score[0]} - ${score[1]}`;
+
       gameOver = true;
       return;
     }
@@ -58,7 +78,7 @@ buttons.forEach(button => {
         //console.log(button.style.backgroundImage)
 
         // update
-        mark = !mark;
+        changeTurn();
         button.style.backgroundImage = mark ? 'url(mark.png)' : 'url(circle.png)';
         
         items[index] = mark;
