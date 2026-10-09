@@ -11,7 +11,7 @@ header{
     background-color: black;
     color: white;
     width: 100%;
-    height: 9vh;
+    height: 7vh;
     margin: 0;
 
     position: relative;
@@ -45,7 +45,7 @@ main{
 #profile #main{
     /* background-color: grey; */
     position: absolute;
-    top: 35%;
+    top: 40%;
     left: 30%;
 
     transform: translate(0, -50%);
@@ -60,7 +60,7 @@ main{
     /* background-color: grey; */
     color: #cbcbcb;
     position: absolute;
-    top: 70%;
+    top: 75%;
     left: 30%;
 
     transform: translate(0, -50%);
@@ -71,18 +71,41 @@ main{
 }
 
 #buttons{
-    background-color: grey;
+    /* background-color: grey; */
 
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 
-    height: 80%;
+    height: 60%;
     aspect-ratio: 8;
 
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 5px;
+}
+
+#buttons button{
+    background-color: transparent;
+    flex: 1;
+
+    color: rgb(219, 219, 219);
+    border-radius: 8px;
+    border-width: 0;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+#buttons button:hover{
+    background-color: #bcbcbc2c;
+    color: #ffffff;
+}
+
+#buttons button.active{
+    background-color: #ae57ff3a;
+    color: #d5a7ff;
 }
