@@ -15,19 +15,26 @@
     <script defer>
 const lista = document.querySelector("#lista");
 
+function render(items) {
+    for (item of items) {
+        const newItem = document.createElement("li");
+        newItem.textContent = item;
+
+        lista.append(newItem);
+    }
+}
+
 async function pobierzDane(params) {
     try {
         // fetch
-        const response = await fetch("json.php")
+        const response = await fetch(window.location.pathname + "/json.php");
         if (!response.ok) { throw new Error ("Brak odpowiedzi z json.php!"); }
-
         
         const dane = await response.json();
 
         // render
-        for (const v of dane) {
-            console.log(v);
-        }
+        render(dane)
+        
     } catch (e) {
         console.log(e);
     }

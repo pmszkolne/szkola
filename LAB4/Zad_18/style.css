@@ -1,0 +1,23 @@
+body{
+    font-family: sans-serif;
+    margin: 10px;
+}
+
+li{
+    transition: all 0.2s ease;
+}
+
+li button{
+    margin-left: 10px;
+}
+
+.aktywne{
+    font-weight: bold;
+}
+.wykonane{
+    text-decoration: line-through;
+    opacity: 50%;
+}
+.blad{
+    color:darkred;
+}

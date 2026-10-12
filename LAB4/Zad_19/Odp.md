@@ -1,0 +1,6 @@
+- **PHP** – pobiera lub przygotowuje dane po stronie serwera.
+- **JSON** – zapisuje dane w formacie, który można łatwo przekazać między serwerem a JavaScriptem.
+- **fetch()** – wysyła żądanie do serwera i pobiera odpowiedź.
+- **JavaScript** – odbiera dane, przetwarza je i decyduje, co wyświetlić na stronie.
+- **DOM** – pozwala JavaScriptowi dodawać, usuwać i zmieniać elementy HTML.
+- **CSS** – odpowiada za wygląd elementów, np. kolory, rozmiary i style zależne od ich stanu.
