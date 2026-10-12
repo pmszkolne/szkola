@@ -24,6 +24,7 @@ async function fetchWithCache(url, ttlMs) {
             // fetch
             const response = await fetch(url);
             if (!response.ok) { throw new Error ("No response!"); }
+            // throw new Error ("Test");
             
             const data = await response.json();
             
@@ -34,6 +35,10 @@ async function fetchWithCache(url, ttlMs) {
             return data;
         } catch (e) {
             console.log(e);
+
+            // return old data
+            console.log("Returning outdated data!")
+            return cashe[url]["data"];
         }
     }
 }
