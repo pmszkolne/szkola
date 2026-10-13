@@ -5,6 +5,12 @@ topbarButtons.addEventListener("click", e => {
     
     // toggle active class
     for (button of topbarButtons.children) {
-        console.log(button);
+        if (button === e.target) {
+            button.classList.add("active");
+        } else {
+            button.classList.remove("active");
+        }
+        
+        // console.log(button);
     }
 });
