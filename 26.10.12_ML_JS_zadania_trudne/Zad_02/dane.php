@@ -1,9 +1,17 @@
 <?php
+$q = $_GET["q"] ?? ""; // query
+$q = strtolower($q); // lowercase
+
+$data = ["ABC", "Przykladowe dane", "Test"];
+$results = [];
+
+foreach ($data as $item) {
+    $item = strtolower($item); // lowercase
+    if (str_contains($item, $q)) { $results[] = $item; }
+}
+
+// send response
 header("Content-Type: application/json; charset=utf-8");
-
-$dane = ["ABC", "Przykladowe dane", "Test"];
-
-header("Content-Type: application/json");
-echo json_encode($dane);
+echo json_encode($results);
 
 ?>
