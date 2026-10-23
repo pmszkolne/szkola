@@ -1,0 +1,51 @@
+body{
+    /* background-color: #a5d5ff; */
+    font-family: sans-serif;
+}
+
+table, th, tr, td{
+    border-collapse: collapse;
+    width: 35%;
+    table-layout: fixed;
+}
+
+/* tr{
+    width: 60%;
+} */
+
+td, th{ /*cell style*/
+    padding: 10px;
+    border: 1px solid #4d4d4d;
+    text-align: left;
+}
+
+th{
+    font-weight: normal;
+    font-size: 14px;
+    color: #5c5c5c
+}
+
+/* td{
+    width: 1%;
+} */
+
+td.quarter{
+    font-weight: bold;
+}
+
+.money::before{
+    content: "$"
+}
+.money::after{
+    content: ".00"
+}
+
+.growth{
+    color: #006f32;
+}
+.growth::before{
+    content: "+"
+}
+.percent::after{
+    content: "%"
+}
