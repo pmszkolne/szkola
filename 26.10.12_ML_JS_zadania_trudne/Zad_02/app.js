@@ -58,3 +58,5 @@ searchBar.addEventListener("input", () => {
     const query = searchBar.value.trim();
     debouncedSearch(query);
 });
+
+search("");
