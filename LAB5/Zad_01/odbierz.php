@@ -5,49 +5,51 @@ $email = $_POST["email"] ?? "";
 $wiadomosc = $_POST["wiadomosc"] ?? "";
 $zgoda = $_POST["zgoda"] ?? "";
 
-$poprawne = true;
-
 $imie = trim($imie);
 $wiadomosc = trim($wiadomosc);
 
-//
+$poprawne = true;
+
+// --- Display info ---
+
 echo "Temat: " . htmlspecialchars($temat, ENT_QUOTES, "UTF-8") . "<br>";
 echo "Imie: " . htmlspecialchars($imie, ENT_QUOTES, "UTF-8") . "<br>";
+echo "<br>";
 
+// --- CHECKS ---
 
-// email sent
+// email -> not empty, valid
 if (isset($_POST["email"])) {
-    echo "Otrzymano adres e-mail.<br>";
-
-    // email check
+    // validity check
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $poprawne = false;
-        echo "Podaj poprawny adres e-mail.<br>";
+        echo "Nieporawny email!<br>";
     }
 } else {
     $poprawne = false;
-    echo "Nie przesłano adresu e-mail.<br>";
+    echo "Podaj adres email!<br>";
 }
 
-// empty check
+// imie -> not empty
 if ($imie === "") {
     $poprawne = false;
-    echo "Imię jest puste!.<br>";
+    echo "Imię jest puste!<br>";
 }
 
+// wiadomosc -> not empty
 if ($wiadomosc === "") {
     $poprawne = false;
-    echo "Wiadomość jest pusta!.<br>";
+    echo "Wiadomość jest pusta!<br>";
 }
 
+// zgoda -> checked
 if ($zgoda !== "on") {
     $poprawne = false;
-    echo "Musisz zaakceptować regulamin.<br>";
+    echo "Musisz zaakceptować regulamin!<br>";
 }
 
+// SUCCESS
 if ($poprawne) {
-    echo "<br>Dziękujemy!";
+    echo "Dziękujemy!";
 }
-
-
 ?>

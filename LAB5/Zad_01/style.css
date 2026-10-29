@@ -12,7 +12,7 @@ form {
     border: 1px solid grey;
 }
 
-p {
+#witaj {
     text-align: center;
 }
 
@@ -34,6 +34,7 @@ button {
 
 .blad{
     color: red;
+    font-size: 12px;
 }
 
 /* Efekty */

@@ -8,13 +8,22 @@
     <script src="/MiniProjekt/app.js" defer></script>
 </head>
 <body>
-    <form>
-        <input type="text" id="imie" name="imie" placeholder="Imię..." required>
+    <form method="post" novalidate>
+        <!-- IMIE -->
+        <input type="text" id="imie" name="imie" placeholder="Imie" required>
+        <p id="bladImie" class="blad"></p>
+
+        <!-- EMAIL -->
         <input type="email" id="email" name="email" placeholder="email@example.com" required>
-        <textarea id="wiadomosc" name="wiadomosc" rows="3" placeholder="Twoja wiadomość..." maxlength="200" required></textarea>
+        <p id="bladEmail" class="blad"></p>
+
+        <!-- WIADOMOSC -->
+        <textarea id="wiadomosc" name="wiadomosc" rows="3" maxlength="200" placeholder="Wiadomość" required></textarea>
+        <p id="bladWiadomosc" class="blad"></p>
         <p id="znaki">Wpisanych znaków: 0, pozostało: 200</p>
 
-        <button type="submit" id="submit">Wyślij</button>
+        <!-- WYSLIJ -->
+        <button id="submit" type="submit">Wyślij</button>
     </form>
 </body>
 </html>

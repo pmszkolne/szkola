@@ -12,10 +12,6 @@ form {
     border: 1px solid grey;
 }
 
-/* p {
-    text-align: center;
-} */
-
 form * {
     margin-top: 10px;
 }
@@ -35,6 +31,8 @@ button {
 
 .blad{
     color: red;
+    font-size: 12px;
+    margin-top: 6px;
 }
 
 /* Efekty */
