@@ -8,42 +8,59 @@ const znakiObj = document.querySelector("#znaki");
 const bladImieObj = document.querySelector("#bladImie");
 const bladWiadomoscObj = document.querySelector("#bladWiadomosc");
 const bladEmailObj = document.querySelector("#bladEmail");
+const bladWysylanieObj = document.querySelector("#bladWysylanie");
 
 const formularz = document.querySelector("form");
 
+// Liczenie znakow
+function liczZnaki() {
+    const znaki = wiadomoscObj.value.length
+    const maxLength = wiadomoscObj.maxLength
+
+    znakiObj.textContent = "Wpisanych znaków: " + znaki + ", pozostało: " + (maxLength - znaki);
+}
+liczZnaki();
+
+wiadomoscObj.addEventListener("input", liczZnaki);
+
 // Wysylanie
-// console.log(new URL("/MiniProjekt/odpowiedz.php", window.location.href));
-async function wyslij(imie, email, wiadomosc) {
-    
-    
+async function wyslij(imie, email, wiadomosc) {    
     try {
-        const url = "http://127.0.0.1:8000/MiniProjekt/test.php";
-        const response = await fetch(url);
-        // const odpowiedz = await fetch("/MiniProjekt/odpowiedz.php", {
-        //     method: "POST",
-        //     headers: {"Content-Type": "application/json"},
-        //     body: JSON.stringify({
-        //         imie: imie,
-        //         email: email,
-        //         wiadomosc: wiadomosc
-        //     })
-        // });
-        console.log("works");
+        // Wysylanie
+        const odpowiedz = await fetch("/MiniProjekt/odpowiedz.php", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                imie: imie,
+                email: email,
+                wiadomosc: wiadomosc
+            })
+        });
+        if (!odpowiedz.ok) { throw new Error("Błąd HTTP: " + odpowiedz.status); }
+
+        // Odbieranie
+        const dane = await odpowiedz.json()
+
+        if (dane.sukces) {
+            formularz.reset();
+            bladWysylanieObj.textContent = "";
+            liczZnaki();
+            
+            alert("Wysłano!");
+            console.log("Wysłano formularz poprawnie.");
+        } else {
+            throw new Error("Nieporawne dane!");
+        }
     } catch (e) {
-        console.error(e);
+        console.error("Bląd przy wysyłaniu: ", e);
+        bladWysylanieObj.textContent = "Wystąpił błąd przy wysyłaniu!"
     }
-    
-
-    // const dane = await odpowiedz.json();
-
-    // if (!odpowiedz.ok) {
-    //     alert("Wystąpił błąd!");
-    //     return;
-    // }
 }
 
 // Walidacja
 formularz.addEventListener("submit", (e) => {
+    event.preventDefault(); // WAZNE, inaczej nie dziala fetch()
+
     const imie = imieObj.value.trim();
     const email = emailObj.value.trim();
     const wiadomosc = wiadomoscObj.value.trim();
@@ -74,18 +91,6 @@ formularz.addEventListener("submit", (e) => {
         bladEmailObj.textContent = "";
     }
 
-    if (blad) {
-        event.preventDefault();
-        return;
-    }
-
-    wyslij(imie, email, wiadomosc);
-});
-
-// Liczenie znakow
-wiadomoscObj.addEventListener("input", () => {
-    const znaki = wiadomoscObj.value.length
-    const maxLength = wiadomoscObj.maxLength
-
-    znakiObj.textContent = "Wpisanych znaków: " + znaki + ", pozostało: " + (maxLength - znaki);
+    //
+    if (!blad) { wyslij(imie, email, wiadomosc); }
 });

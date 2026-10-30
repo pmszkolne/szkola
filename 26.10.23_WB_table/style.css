@@ -4,9 +4,10 @@ body{
 }
 
 table, th, tr, td{
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
     width: 35%;
     table-layout: fixed;
+    border-radius: 100px;
 }
 
 /* tr{
