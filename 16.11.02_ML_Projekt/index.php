@@ -71,7 +71,7 @@ if (!$blad) {
             name="sila"
             type="number" 
             min="1" 
-            max="100" 
+            max="20" 
             step="1"
             required
             value="<?= htmlspecialchars($_POST['sila'] ?? '') ?>"
