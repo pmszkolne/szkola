@@ -1,0 +1,16 @@
+table{
+    border-collapse: collapse;
+    text-align: center;
+}
+
+td, th{
+    border: 1px solid black;
+    padding: 4px;
+}
+
+#wplaty{
+    width: 100%;
+}
+#wplaty td, #wplaty th{
+    
+}
