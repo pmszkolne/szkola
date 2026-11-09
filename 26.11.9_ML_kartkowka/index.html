@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Page Title</title>
+    <link rel='stylesheet' href='style.css'>
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <form method="POST" action="odbierz.php">
+        <!-- IMIE -->
+         <label for="name">Imię</label>
+        <input 
+            type="text" 
+            id="name" 
+            name="name"
+        >
+
+        <!-- WIADOMOSC -->
+        <label for="message">Wiadomość</label>
+        <textarea
+            id="message"
+            name="message"
+        >
+        </textarea>
+
+        <!-- WYSLIJ -->
+        <button
+            type="submit"   
+        >
+            Wyślij
+        </button>
+    </form>
+    
+</body>
+</html>
