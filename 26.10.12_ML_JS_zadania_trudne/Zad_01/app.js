@@ -12,13 +12,13 @@ if (!cashe) {
 async function fetchWithCache(url, ttlMs) {
     if (cashe[url] && Date.now() - cashe[url]["timestamp"] <= ttlMs ) {
         // get cashed
-        console.log("get cashed");
+        console.log("Returning cashed data:");
         
         return cashe[url]["data"];
 
     } else {
         // request new data
-        console.log("request");
+        console.log("Requested data:");
 
         try {
             // fetch
@@ -34,10 +34,10 @@ async function fetchWithCache(url, ttlMs) {
 
             return data;
         } catch (e) {
-            console.log(e);
+            console.warn(e);
 
             // return old data
-            console.log("Returning outdated data!")
+            console.warn("Request failed, returning old data:")
             return cashe[url]["data"];
         }
     }
