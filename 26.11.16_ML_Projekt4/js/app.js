@@ -1,6 +1,4 @@
-/**
- * Smart Office SPA — Logika aplikacji po stronie klienta (ES6+)
- */
+
 (() => {
   'use strict';
 
