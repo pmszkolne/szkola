@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Office SPA — System Rezerwacji Stanowisk i Sal Konferencyjnych</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand">
+        <span class="brand-badge">SMART OFFICE</span>
+        <div>
+          <h1>System Rezerwacji Biura</h1>
+          <p class="subtitle">Zarządzanie stanowiskami pracy i salami konferencyjnymi (SPA)</p>
+        </div>
+      </div>
+
+      <button type="button" id="themeToggle" class="btn btn-outline theme-toggle" aria-label="Przełącz motyw kolorystyczny">
+        <span id="themeIcon" aria-hidden="true">🌙</span>
+        <span id="themeLabel">Tryb ciemny</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container main-layout">
+    <!-- Panel filtrowania terminu -->
+    <section class="card filter-panel" aria-labelledby="filterHeading">
+      <div class="section-header">
+        <h2 id="filterHeading">1. Wybierz termin rezerwacji</h2>
+        <span id="activeRangeBadge" class="range-badge">Ładowanie terminu...</span>
+      </div>
+
+      <form id="filterForm" class="filter-grid" novalidate>
+        <div class="form-group">
+          <label for="filterDate">Data rezerwacji</label>
+          <input type="date" id="filterDate" name="date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="filterStart">Godzina rozpoczęcia</label>
+          <input type="time" id="filterStart" name="start" step="900" required>
+        </div>
+
+        <div class="form-group">
+          <label for="filterEnd">Godzina zakończenia</label>
+          <input type="time" id="filterEnd" name="end" step="900" required>
+        </div>
+
+        <div class="form-group filter-actions">
+          <button type="button" id="refreshBtn" class="btn btn-primary">
+            Odśwież dostępność
+          </button>
+        </div>
+      </form>
+      <p id="filterValidationMsg" class="validation-error" role="alert" hidden></p>
+    </section>
+
+    <!-- Baner potwierdzenia nowej rezerwacji z pobieraniem .ics (zadanie dodatkowe) -->
+    <section id="icsBanner" class="card ics-banner" aria-live="polite" hidden>
+      <div class="ics-banner-content">
+        <div>
+          <strong>Rezerwacja potwierdzona!</strong>
+          <p id="icsBannerDetails">Twoja rezerwacja została zapisana w bazie danych.</p>
+        </div>
+        <div class="ics-banner-actions">
+          <a id="icsDownloadLink" href="#" class="btn btn-success" download="rezerwacja.ics">
+            📅 Pobierz plik kalendarza (.ics)
+          </a>
+          <button type="button" id="closeIcsBanner" class="btn btn-outline btn-sm" aria-label="Zamknij baner">
+            Zamknij
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interaktywny rzut biura (CSS Grid) -->
+    <section class="card office-section" aria-labelledby="mapHeading">
+      <div class="section-header">
+        <div>
+          <h2 id="mapHeading">2. Interaktywny rzut biura</h2>
+          <p class="section-desc">Kliknij wolne biurko lub salę konferencyjną, aby utworzyć rezerwację w wybranym terminie.</p>
+        </div>
+
+        <ul class="legend" aria-label="Legenda statusów stanowisk">
+          <li class="legend-item"><span class="dot dot-free"></span> Wolne</li>
+          <li class="legend-item"><span class="dot dot-occupied"></span> Zajęte</li>
+          <li class="legend-item"><span class="dot dot-selected"></span> Wybrane</li>
+        </ul>
+      </div>
+
+      <div class="office-blueprint">
+        <div class="office-zone-labels">
+          <span>Strefa Open Space (Biurka)</span>
+          <span>Strefa Spotkań (Sale Konferencyjne)</span>
+        </div>
+        <div id="officeGrid" class="office-grid" role="grid" aria-label="Mapa stanowisk i sal konferencyjnych">
+          <!-- Elementy generowane dynamicznie przez js/app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Lista aktywnych rezerwacji -->
+    <section class="card reservations-section" aria-labelledby="reservationsHeading">
+      <div class="section-header">
+        <div>
+          <h2 id="reservationsHeading">3. Aktywne rezerwacje</h2>
+          <p class="section-desc">Lista aktualnych i nadchodzących rezerwacji w systemie.</p>
+        </div>
+        <span id="reservationsCount" class="count-pill">0 rezerwacji</span>
+      </div>
+
+      <div class="table-responsive">
+        <table class="reservations-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Zasób</th>
+              <th>Typ</th>
+              <th>Rezerwujący</th>
+              <th>Rozpoczęcie</th>
+              <th>Zakończenie</th>
+              <th>Akcje</th>
+            </tr>
+          </thead>
+          <tbody id="reservationsTableBody">
+            <tr>
+              <td colspan="7" class="empty-state">Ładowanie listy rezerwacji...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <p>Smart Office SPA</p>
+    </div>
+  </footer>
+
+  <!-- Okno modalne formularza rezerwacji -->
+  <div id="bookingModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span id="modalResourceTypeBadge" class="resource-type-tag">Biurko</span>
+          <h3 id="modalTitle">Rezerwacja stanowiska</h3>
+        </div>
+        <button type="button" id="closeModalBtn" class="modal-close" aria-label="Zamknij okno">&times;</button>
+      </div>
+
+      <form id="bookingForm" class="modal-body" novalidate>
+        <input type="hidden" id="modalResourceId" name="resource_id">
+
+        <div class="booking-summary-box">
+          <div class="summary-row">
+            <span>Wybrany zasób:</span>
+            <strong id="modalResourceName">—</strong>
+          </div>
+          <div class="summary-row">
+            <span>Pojemność:</span>
+            <strong id="modalResourceCapacity">—</strong>
+          </div>
+          <div class="summary-row">
+            <span>Termin:</span>
+            <strong id="modalDateTimeSummary">—</strong>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="userNameInput">Imię i nazwisko osoby rezerwującej *</label>
+          <input
+            type="text"
+            id="userNameInput"
+            name="user_name"
+            placeholder="np. Jan Kowalski"
+            minlength="3"
+            maxlength="100"
+            required
+            autocomplete="name"
+          >
+          <small class="field-hint">Wymagane minimum 3 znaki.</small>
+        </div>
+
+        <p id="modalErrorMsg" class="validation-error" role="alert" hidden></p>
+
+        <div class="modal-footer">
+          <button type="button" id="cancelModalBtn" class="btn btn-outline">Anuluj</button>
+          <button type="submit" id="submitBookingBtn" class="btn btn-primary">Potwierdź rezerwację</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Kontener animowanych powiadomień (Toasts) -->
+  <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
