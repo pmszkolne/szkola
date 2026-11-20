@@ -1,0 +1,20 @@
+form{
+    display: flex;
+    flex-direction: column;
+
+    width: 400px;
+    gap: 8px;
+}
+
+form > div, form > label{
+    display: flex;
+    flex-direction: column;
+}
+
+/* form > input{
+    margin-bottom: 10px;
+}
+
+form > input[type="submit"]{
+    margin-top: 10px;
+} */

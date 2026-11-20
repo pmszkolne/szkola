@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Page Title</title>
+    <link rel='stylesheet' href='style.css'>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <form>
+        <label>
+            Podaj login<br>
+            <input 
+                type="text" 
+                id="login" 
+                required
+                value="ostatni@mail.com"
+                readonly
+            >
+        </label>
+        
+
+        <label>
+            Podaj hasło<br>
+            <input 
+                type="password" 
+                id="pass"
+                required
+            >
+        </label>
+            
+        <div>
+            <label>
+                <input type="radio" name="Wiek" id="Wiek" value="Super" checked> Super
+            </label> <br> <label>
+                <input type="radio" name="Wiek" id="Wiek" value="Meh"> Meh
+            </label> <br> <label>
+                <input type="radio" name="Wiek" id="Wiek" value="Slabe"> Slabe
+            </label>
+        </div>
+        
+        <label style="display:block;">
+            <input 
+                type="checkbox" 
+                id="check" 
+                required
+            >
+            Potwierdzam
+        </label>
+
+        <select required>
+            <option value="" disabled selected>Wybierz</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+
+        <select multiple required>
+            <option value="" disabled selected>Wybierz</option>
+            <option value="A">1</option>
+            <option value="B">2</option>
+            <option value="C">3</option>
+        </select>
+
+        <textarea rows="4" cols="" minlength="5" maxlength="200" required></textarea>
+
+        <input type="submit" value="Zaloguj">
+    </form>
+</body>
+</html>
